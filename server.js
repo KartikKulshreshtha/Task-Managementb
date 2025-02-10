@@ -9,7 +9,15 @@ dotenv.config();
 connectDB();
 const app = express();
 
-app.use(cors());
+// Configure CORS
+const corsOptions = {
+  origin: true,
+  methods: "GET,POST,PUT,DELETE",
+  allowedHeaders: "Content-Type,Authorization",
+  credentials: true, // Allow cookies and auth headers
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
